@@ -8,8 +8,8 @@
 
 
 
-#include "Student.h"
-#include "StudentsList.h"
+#include "Person.h"
+#include "Passangers.h"
 
 void ShowPeople(Person people)
 {
@@ -30,21 +30,36 @@ void ShowPeople(Person people)
 
 int main()
 {
-    //Student student("Muhammed MacIntyre 18 192 86.04 muhammed_macintyre@mail.net");
-    /*ShowStudent(student);*/
 
-    Passangers s1("G:\\Learning C++\\Parser\\Parser Titanic\\Parser\\titanic_passenger.csv");
-    //for (auto people : s1.getPassangers())
-    //{
-    //    ShowPeople(people);
-    //}
 
-    //s1.WriteDataToFile(s1.getStudents(), "G:\\Learning C++\\Parser\\Parser\\out.csv");
+    //2. Розпарсити і вивести всі дані на екран
 
+    Passangers s1("G:\\Learning C++\\!GIT\\Titanic\\Titanic parser\\Parser\\Raw file.csv");
+    for (auto people : s1.getPassangers())
+    {
+        ShowPeople(people);
+    }
+
+
+    ////s1.WriteDataToFile(s1.getStudents(), "G:\\Learning C++\\Parser\\Parser\\out.csv");
+
+    //3. Посортувати людей за гендерною ознакою і підрахувати кількість чоловіків та кількість жінок (count)
     s1.WriteDataToFile(s1.sortingBySex(), "G:\\Learning C++\\Parser\\Parser Titanic\\Parser\\Sorted_BySex.csv");
+    for (auto people : s1.getPassangers())
+    {
+        ShowPeople(people);
+    }
 
-    //s1.WriteDataToFile(s1.GetSurvived(), "G:\\Learning C++\\Parser\\Parser Titanic\\Parser\\Survived.csv");
-    //s1.WriteDataToFile(s1.GetUnique(), "G:\\Learning C++\\Parser\\Parser Titanic\\Parser\\titanic_passengerUnique.csv");
+    //4. Вивести в два окремі файлі людей які вижили та людей, які загинули
+    s1.WriteDataToFile(s1.getSurvivedList(), "G:\\Learning C++\\!GIT\\Titanic\\Titanic parser\\Parser\\SurvivedList.csv");
+    s1.WriteDataToFile(s1.getDeadsList(), "G:\\Learning C++\\!GIT\\Titanic\\Titanic parser\\Parser\\DeadsList.csv");
+
+
+
+    //5. Відсортувати в окремі три файли по назвах станцій, на яких люди сіли на судно
+    s1.WriteDataToFile(s1.getStation_S(), "G:\\Learning C++\\!GIT\\Titanic\\Titanic parser\\Parser\\getStation_S_passengers.csv");
+    s1.WriteDataToFile(s1.getStation_Q(), "G:\\Learning C++\\!GIT\\Titanic\\Titanic parser\\Parser\\getStation_Q_passengers.csv");
+    s1.WriteDataToFile(s1.getStation_C(), "G:\\Learning C++\\!GIT\\Titanic\\Titanic parser\\Parser\\getStation_C_passengers.csv");
 
 
 }
